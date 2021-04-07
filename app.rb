@@ -10,6 +10,12 @@ class MakersBnb < Sinatra::Base
     'This is a test page!'
   end
 
+
+  get '/properties' do
+    @properties = Property.all
+    erb :"properties/index"
+  end
+
   get '/properties/new' do
     "devine lounge"
     erb :'properties/new'
@@ -19,6 +25,7 @@ class MakersBnb < Sinatra::Base
     Property.create(name: params[:name], description: params[:description], price: params[:price])
     redirect '/properties'
   end
+
 
 
   run! if app_file == $0
