@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './database_connection_setup'
+require './lib/property.rb'
 
 
 class MakersBnb < Sinatra::Base
@@ -10,6 +11,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/properties' do
+    @properties = Property.all
     erb :"properties/index"
   end
 
