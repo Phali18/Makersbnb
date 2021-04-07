@@ -21,7 +21,14 @@ class Property
             connection = PG.connect(dbname: 'makersbnb')
         end
         properties = connection.exec('SELECT * from properties;')
-        properties.map { |property| property ['name'] }
+        properties.map do |property| 
+          Property.new(
+            id: property['id'], 
+            name: property['name'], 
+            description: property['description'],
+            price: property['price'].to_i 
+          )
+        end
     end
 
   def self.create(name:, description:, price:)

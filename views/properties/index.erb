@@ -2,6 +2,10 @@
 
 <ul>
   <% @properties.each do |property| %>
-    <li><%= property %></li>
+    <li class="property" id="property-<%= property.id %>">
+      <%= property.name %> 
+      <%= property.description %> 
+      <%= property.price %> 
+    </li>
   <% end %>
 </ul>
