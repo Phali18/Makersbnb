@@ -1,0 +1,11 @@
+<h1> makersbnb properties </h1>
+
+<ul>
+  <% @properties.each do |property| %>
+    <li class="property" id="property-<%= property.id %>">
+      <%= property.name %> 
+      <%= property.description %> 
+      <%= property.price %> 
+    </li>
+  <% end %>
+</ul>
