@@ -11,6 +11,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/properties/new' do
+    "devine lounge"
     erb :'properties/new'
   end
 
