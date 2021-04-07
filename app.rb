@@ -9,6 +9,11 @@ class MakersBnb < Sinatra::Base
     'This is a test page!'
   end
 
+  get '/properties' do
+    erb :"properties/index"
+  end
+
+
 
   run! if app_file == $0
 end
