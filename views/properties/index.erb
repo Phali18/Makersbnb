@@ -1,5 +1,9 @@
 <h1> Makersbnb Properties </h1>
 
+<form action="/sessions/destroy" method="post">
+      <button type="submit" value="Sign out">Sign Out</button>
+</form>
+
 <ul>
   <% @properties.each do |property| %>
     <li class="property" id="property-<%= property.id %>">
