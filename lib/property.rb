@@ -15,12 +15,8 @@ class Property
   end
   
   def self.all
-    if ENV['ENVIRONMENT'] == 'test'
-        connection = PG.connect(dbname: 'makersbnb_test')
-    else
-        connection = PG.connect(dbname: 'makersbnb')
-    end
-    properties = connection.exec('SELECT * from properties;')
+    properties = DatabaseConnection.query('SELECT * from properties;')
+    
     properties.map do |property| 
     Property.new(
        id: property['id'], 
@@ -37,12 +33,7 @@ class Property
   end
 
   def self.find(property_id)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
-    else
-      connection = PG.connect(dbname: 'makersbnb')
-    end
-    result = connection.exec("SELECT * FROM properties WHERE id = #{property_id};")
+    result = DatabaseConnection.query("SELECT * FROM properties WHERE id = #{property_id};")
 
     result.map do |property| 
       Property.new(

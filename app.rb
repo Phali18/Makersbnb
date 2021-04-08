@@ -10,10 +10,8 @@ class MakersBnb < Sinatra::Base
     'This is a test page!'
   end
 
-
   get '/properties' do
     @properties = Property.all
-    p @properties
     erb :"properties/index"
   end
 
