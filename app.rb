@@ -64,5 +64,13 @@ class MakersBnb < Sinatra::Base
     erb :'properties/show' 
   end
 
+  post '/requests' do
+    @details = params[:booking_details]
+    # @id = params[:id]
+    # p @details
+    # p @id
+    erb :'/properties/requests'
+  end
+
   run! if app_file == $0
 end
