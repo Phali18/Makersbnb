@@ -1,4 +1,8 @@
-<h1> makersbnb properties </h1>
+<h1> Makersbnb Properties </h1>
+
+<form action="/sessions/destroy" method="post">
+      <button type="submit" value="Sign out">Sign Out</button>
+</form>
 
 <ul>
   <% @properties.each do |property| %>
@@ -9,3 +13,7 @@
     </li>
   <% end %>
 </ul>
+
+<form action="/properties/new" method="get" >
+  <input type="submit" value="Add">
+</form>
