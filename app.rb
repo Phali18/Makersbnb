@@ -28,10 +28,9 @@ class MakersBnb < Sinatra::Base
 
   get '/properties/:id' do
     # @property = Property.find(params[:id])
+    p params[:id]
     erb :'properties/show' 
   end
-
-
 
   run! if app_file == $0
 end
