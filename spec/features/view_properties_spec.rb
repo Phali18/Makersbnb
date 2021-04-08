@@ -3,7 +3,7 @@ require 'property'
 feature 'viewing the properties' do
     scenario 'going to index page' do
         visit ('/properties')
-        expect(page).to have_content('properties')
+        expect(page).to have_content('Properties')
     end
 
     scenario 'see a list of all properties' do

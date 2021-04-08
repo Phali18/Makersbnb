@@ -27,7 +27,7 @@ describe Property do
 
       properties = Property.all
 
-      expect(properties.length).to eq 1
+      expect(properties.length).to eq 2
       expect(properties.first).to be_a Property
       expect(properties.first.name).to eq 'Bristol'
       expect(properties.first.description).to eq '2 bed flat in the heart of the city'

@@ -1,4 +1,4 @@
-<h1> makersbnb properties </h1>
+<h1> Makersbnb Properties </h1>
 
 <ul>
   <% @properties.each do |property| %>
@@ -9,3 +9,7 @@
     </li>
   <% end %>
 </ul>
+
+<form action="/properties/new" method="get" >
+  <input type="submit" value="Add">
+</form>
