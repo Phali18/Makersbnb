@@ -7,7 +7,7 @@
 <ul>
   <% @properties.each do |property| %>
     <li class="property" id="property-<%= property.id %>">
-      <%= property.name %> 
+      <a href="/properties/<%= property.id %>"> <%= property.name %> </a>
       <%= property.description %> 
       <%= property.price %> 
     </li>

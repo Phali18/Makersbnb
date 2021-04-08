@@ -13,7 +13,6 @@ class MakersBnb < Sinatra::Base
     'This is a test page!'
   end
 
-
   get '/properties' do
     @properties = Property.all
     erb :"properties/index"
@@ -58,6 +57,11 @@ class MakersBnb < Sinatra::Base
     session.clear
     flash[:notice] = 'You have signed out.'
     redirect('/')
+  end
+  
+  get '/properties/:id' do
+    @property = Property.find(params[:id])
+    erb :'properties/show' 
   end
 
   run! if app_file == $0
