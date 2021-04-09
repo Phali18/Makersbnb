@@ -19,20 +19,20 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/properties/new' do
-    "devine lounge"
+    'devine lounge'
     erb :'properties/new'
   end
 
   post '/properties' do
-    Property.create(name: params[:name], description: params[:description], price: params[:price])
+    Property.create(name: params[:name], description: params[:description], price: params[:price], user_id: session[:user_id])
     redirect '/properties'
   end
 
-  get '/' do 
+  get '/' do
     erb :'properties/homepage'
-  end 
+  end
 
-  post '/users' do 
+  post '/users' do
     user = User.create(email: params[:email], password: params[:password])
     session[:user_id] = user.id
     redirect '/properties'
@@ -53,15 +53,15 @@ class MakersBnb < Sinatra::Base
     end
   end
 
-  post '/sessions/destroy' do 
+  post '/sessions/destroy' do
     session.clear
     flash[:notice] = 'You have signed out.'
     redirect('/')
   end
-  
+
   get '/properties/:id' do
     @property = Property.find(params[:id])
-    erb :'properties/show' 
+    erb :'properties/show'
   end
 
   run! if app_file == $0
