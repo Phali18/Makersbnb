@@ -10,8 +10,9 @@ describe BookingRequest do
   describe '.create' do
     it 'returns all the details of a booking' do
       connection = PG.connect(dbname: 'makersbnb_test')
-      property = Property.create(name: 'Bristol', description: '2 bed flat in the heart of the city', price: 100)
       user = User.create(email: 'JohnSmith@hotmail.com', password: 'password987')
+      property = Property.create(name: 'Bristol', description: '2 bed flat in the heart of the city', price: 100, user_id: user.id)
+      
 
       request_1 = BookingRequest.create(user_id: user.id, property_id: property.id, booking_details: "Stay forever")
 

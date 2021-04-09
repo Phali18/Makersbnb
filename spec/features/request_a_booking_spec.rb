@@ -1,8 +1,9 @@
 feature 'request a booking' do
   scenario 'submit a booking' do
     connection = PG.connect(dbname: 'makersbnb_test')
-    property_1 = Property.create(name: 'Big Ben', description: 'London landmark', price: 150)
-    property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100)
+    user = User.create(email: 'JohnSmith@hotmail.com', password: 'password987')
+    property_1 = Property.create(name: 'Big Ben', description: 'London landmark', price: 150, user_id: user.id)
+    property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100, user_id: user.id)
 
     visit('/')
     fill_in('email', with: 'test@example')
