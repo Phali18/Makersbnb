@@ -19,8 +19,12 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/properties/new' do
-    "devine lounge"
-    erb :'properties/new'
+    if session[:user_id] != nil
+      erb :'properties/new'
+    else
+      flash[:error] = "You are not signed in."
+      redirect('/')
+    end
   end
 
   get '/properties/:id/edit' do
