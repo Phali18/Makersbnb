@@ -107,3 +107,58 @@ I would like the property to remain available until I confirm any booking reques
 As a b&b owner 
 In order to advertise my property 
 ```
+# Set Up
+
+## Database setup
+Here is how to set up the databases for this project:
+1. Start postgres in the terminal
+```
+psql postgres
+```
+
+2. Create the original database - makersbnb
+
+```
+CREATE DATABASE makersbnb;
+```
+3. Connect to the database
+
+``` 
+\c makersbnb
+```
+
+4. Add the table for properties
+```
+CREATE TABLE properties (id SERIAL PRIMARY KEY, name VARCHAR(60), description VARCHAR(140), price NUMERIC);
+```
+5. Add the table for users
+```
+CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR(60), password VARCHAR(60), user_id INTEGER REFERENCES users (id));
+```
+
+6. Add a table for booking requests
+```
+CREATE TABLE booking_requests (id SERIAL PRIMARY KEY, booking_details VARCHAR(200), user_id INT REFERENCES users(id), property_id INT REFERENCES properties(id));
+```
+7. Create the test database
+```
+CREATE DATABASE makersbnb_test;
+```
+
+8. Repeat steps 3 - 6 for the test database
+
+## Gemfile setup
+
+Here are the gems used for this project:
+
+```
+source 'https://rubygems.org'
+
+gem 'bcrypt'
+gem 'capybara'
+gem 'pg'
+gem 'rspec'
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sinatra-flash'
+```
