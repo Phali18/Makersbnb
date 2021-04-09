@@ -4,6 +4,7 @@ require 'sinatra/reloader'
 require './database_connection_setup'
 require './lib/property'
 require './lib/user'
+require './lib/booking_request'
 
 class MakersBnb < Sinatra::Base
   enable :sessions
@@ -76,6 +77,12 @@ class MakersBnb < Sinatra::Base
     session.clear
     flash[:notice] = 'You have signed out.'
     redirect('/')
+  end
+
+  post '/requests' do
+    @booking_details = BookingRequest.create(user_id: session[:user_id], property_id: params[:property_id].to_i, booking_details: params[:booking_details])
+    @property = Property.find(id: params[:property_id].to_i)
+    erb :'/properties/requests'
   end
 
   run! if app_file == $0

@@ -50,7 +50,9 @@ describe Property do
       property = Property.find(id: property_1.id)
 
       expect(property).to be_a Property
+
       expect(property.id).to eq property_1.id
+
       expect(property.name).to eq 'Big Ben'
       expect(property.description).to eq 'London landmark'
       expect(property.price).to eq 150
