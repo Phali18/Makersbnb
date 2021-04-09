@@ -1,6 +1,7 @@
 feature 'update listing ' do
     scenario 'user can update listing information' do
-        property = Property.create(name: 'New York Apartment', description: '3 bed apartment in the heart of the city', price: 250)
+        user = User.create(email: 'JohnSmith@hotmail.com', password: 'password987')
+        property = Property.create(name: 'New York Apartment', description: '3 bed apartment in the heart of the city', price: 250, user_id: user.id)
 
         visit('/properties')
         expect(page).to have_content 'New York Apartment'
