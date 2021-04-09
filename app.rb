@@ -23,6 +23,16 @@ class MakersBnb < Sinatra::Base
     erb :'properties/new'
   end
 
+  get '/properties/:id/edit' do
+    @property = Property.find(id: params[:id]) 
+    erb :'properties/edit'
+  end
+
+  post '/properties/:id' do
+    Property.update(id: params[:id], name: params[:name], description: params[:description], price: params[:price])
+    redirect('/properties')
+  end
+
   post '/properties' do
     Property.create(name: params[:name], description: params[:description], price: params[:price])
     redirect '/properties'
@@ -60,7 +70,7 @@ class MakersBnb < Sinatra::Base
   end
   
   get '/properties/:id' do
-    @property = Property.find(params[:id])
+    @property = Property.find(id: params[:id])
     erb :'properties/show' 
   end
 

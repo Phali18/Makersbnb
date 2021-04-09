@@ -43,13 +43,13 @@ describe Property do
       property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100)
 
       # need the id there 
-      property = Property.find(property_1.id)
+      property = Property.find(id: property_1.id)
 
-      expect(property.length).to eq 1
-      expect(property.first).to be_a Property
-      expect(property.first.name).to eq 'Big Ben'
-      expect(property.first.description).to eq 'London landmark'
-      expect(property.first.price).to eq 150
+      expect(property).to be_a Property
+      expect(property.id).to eq property_1.id
+      expect(property.name).to eq 'Big Ben'
+      expect(property.description).to eq 'London landmark'
+      expect(property.price).to eq 150
       
     end
   end

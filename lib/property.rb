@@ -32,18 +32,21 @@ class Property
     Property.new(id: result[0]['id'], name: result[0]['name'], description: result[0]['description'], price: result[0]['price'])
   end
 
-  def self.find(property_id)
-    result = DatabaseConnection.query("SELECT * FROM properties WHERE id = #{property_id};")
+  def self.update(id:, name:, description:, price:)
+    result = DatabaseConnection.query("UPDATE properties SET name='#{name}', description='#{description}', price='#{price}' WHERE id='#{id}' RETURNING id, name, description, price;")
+    Property.new(id: result[0]['id'], name: result[0]['name'], description: result[0]['description'], price: result[0]['price'])
+  end
 
-    result.map do |property| 
+  def self.find(id:)
+    result = DatabaseConnection.query("SELECT * FROM properties WHERE id = #{id};")
+    property = result.map do |property|
       Property.new(
         id: property['id'], 
         name: property['name'], 
         description: property['description'],
         price: property['price'].to_i 
       )
-    end
-
+     end.first
   end
 end
 
