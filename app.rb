@@ -12,41 +12,12 @@ class MakersBnb < Sinatra::Base
   get '/test' do
     'This is a test page!'
   end
-
-  get '/properties' do
-    @properties = Property.all
-    erb :"properties/index"
-  end
-
-  get '/properties/new' do
-    if session[:user_id] != nil
-      erb :'properties/new'
-    else
-      flash[:error] = "You are not signed in."
-      redirect('/')
-    end
-  end
-
-  get '/properties/:id/edit' do
-    @property = Property.find(id: params[:id]) 
-    erb :'properties/edit'
-  end
-
-  post '/properties/:id' do
-    Property.update(id: params[:id], name: params[:name], description: params[:description], price: params[:price])
-    redirect('/properties')
-  end
-
-  post '/properties' do
-    Property.create(name: params[:name], description: params[:description], price: params[:price], user_id: session[:user_id])
-    redirect '/properties'
-  end
-
-  get '/' do 
+  
+  get '/' do
     erb :'properties/homepage'
-  end 
+  end
 
-  post '/users' do 
+  post '/users' do
     user = User.create(email: params[:email], password: params[:password])
     session[:user_id] = user.id
     redirect '/properties'
@@ -67,15 +38,44 @@ class MakersBnb < Sinatra::Base
     end
   end
 
-  post '/sessions/destroy' do 
-    session.clear
-    flash[:notice] = 'You have signed out.'
-    redirect('/')
+  get '/properties' do
+    @properties = Property.all
+    erb :"properties/index"
+  end
+
+  get '/properties/new' do
+    if session[:user_id] != nil
+      erb :'properties/new'
+    else
+      flash[:error] = "You are not signed in."
+      redirect('/')
+    end
   end
   
+   post '/properties' do
+    Property.create(name: params[:name], description: params[:description], price: params[:price], user_id: session[:user_id])
+    redirect '/properties'
+  end
+
   get '/properties/:id' do
     @property = Property.find(id: params[:id])
     erb :'properties/show' 
+  end
+  
+  get '/properties/:id/edit' do
+    @property = Property.find(id: params[:id]) 
+    erb :'properties/edit'
+  end
+
+  post '/properties/:id' do
+    Property.update(id: params[:id], name: params[:name], description: params[:description], price: params[:price])
+    redirect('/properties')
+  end
+
+  post '/sessions/destroy' do
+    session.clear
+    flash[:notice] = 'You have signed out.'
+    redirect('/')
   end
 
   run! if app_file == $0
