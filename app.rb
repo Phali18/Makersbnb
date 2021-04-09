@@ -60,7 +60,7 @@ class MakersBnb < Sinatra::Base
   end
   
   get '/properties/:id' do
-    @property = Property.find(params[:id])
+    @property = Property.find(id: params[:id])
     erb :'properties/show' 
   end
 

@@ -1,8 +1,8 @@
-<h1><%= @property[0].name %></h1>
+<h1><%= @property.name %></h1>
 
-<h2><%= @property[0].description %></h2>
+<h2><%= @property.description %></h2>
 
-<h2>£<%= @property[0].price %> per night</h2>
+<h2>£<%= @property.price %> per night</h2>
 
 <form action="/requests" method="post">
   Booking details: <input type="text" name="booking_details" placeholder="booking details">
