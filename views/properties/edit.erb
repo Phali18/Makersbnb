@@ -1,0 +1,8 @@
+<h1> Edit Listing </h1>
+<form action="/properties/<%= @property.id %>" method="post">
+  <input type="hidden" name="_method" value="PATCH" />
+  <input type="text" name="name" value="<%= @property.name %>"/>
+  <input type="text" name="description" value="<%= @property.description %>" />
+  <input type="number" name="price" value="<%= @property.price %>" />
+  <input type="submit" value="Submit" />
+</form>

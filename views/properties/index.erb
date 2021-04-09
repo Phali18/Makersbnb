@@ -11,9 +11,14 @@
       <%= property.description %> 
       <%= property.price %> 
     </li>
+
+    <form action="/properties/<%= property.id %>/edit" method="get">
+      <input type="submit" value="Edit" />
+    </form>
   <% end %>
 </ul>
 
 <form action="/properties/new" method="get" >
   <input type="submit" value="Add">
 </form>
+
