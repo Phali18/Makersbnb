@@ -1,11 +1,14 @@
 feature 'request a booking' do
   scenario 'submit a booking' do
     connection = PG.connect(dbname: 'makersbnb_test')
-    
     property_1 = Property.create(name: 'Big Ben', description: 'London landmark', price: 150)
     property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100)
+
+    visit('/')
+    fill_in('email', with: 'test@example')
+    fill_in('password', with: 'password987')
+    click_button('Submit')
     
-    visit ('/properties')
     click_on "Big Ben"
     
     expect(current_path).to eq ("/properties/#{property_1.id}")

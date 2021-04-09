@@ -5,6 +5,7 @@
 <h2>£<%= @property.price %> per night</h2>
 
 <form action="/requests" method="post">
-  Booking details: <input type="text" name="booking_details" placeholder="booking details">
+  Booking details for the owner: <input type="text" name="booking_details" placeholder="booking details">
+  <input type='hidden' value=<%=@property.id%> name='property_id'>
   <input type= "submit" value= "Submit Booking Request" >
 </form>
