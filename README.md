@@ -5,10 +5,15 @@ This is a web application which acts as a clone of Airbnb. A user can list a pro
 ## Headline Specifications
 
 – A user can create an account or sign in with their existing account credentials
+
 – A user with an account can list a property with a name, description and price
+
 – A user can add a range of dates when the property is available for booking
+
 – A user can edit the property they have listed
+
 - A user with an account can request to book a property for a specified duration, which is pending approval from the host
+
 - Until the status of the booking is confirmed, the property should still be available for booking requests
 
 ## User Stories
