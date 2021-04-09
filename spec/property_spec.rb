@@ -1,12 +1,15 @@
 require 'property'
+require 'user'
 require './lib/database_connection'
 
 describe Property do
   describe '.all' do
     it 'returns array of properties' do
       connection = PG.connect(dbname: 'makersbnb_test')
-      property_1 = Property.create(name: 'Big Ben', description: 'London landmark', price: 150)
-      property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100)
+      user = User.create(email: 'JohnSmith@hotmail.com', password: 'password987')
+      property_1 = Property.create(name: 'Big Ben', description: 'London landmark', price: 150, user_id: user.id)
+      user2 = User.create(email: 'SamSmith@hotmail.com', password: 'password987')
+      property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100, user_id: user2.id)
 
       properties = Property.all
       expect(properties.length).to eq 2
@@ -20,9 +23,10 @@ describe Property do
   describe '.create' do
     it 'adds property to list' do
       connection = PG.connect(dbname: 'makersbnb_test')
-
-      property = Property.create(name: 'Bristol', description: '2 bed flat in the heart of the city', price: 100)
-      Property.create(name: 'London', description: 'Lovely 2 bed flat in Chelsea', price: 350)
+      user = User.create(email: 'JohnSmith@hotmail.com', password: 'password987')
+      property = Property.create(name: 'Bristol', description: '2 bed flat in the heart of the city', price: 100, user_id: user.id)
+      user2 = User.create(email: 'SamSmith@hotmail.com', password: 'password987')
+      Property.create(name: 'London', description: 'Lovely 2 bed flat in Chelsea', price: 350, user_id: user.id)
 
       properties = Property.all
 
@@ -37,9 +41,10 @@ describe Property do
   describe '.find' do
     it 'returns specific information about one property' do
       connection = PG.connect(dbname: 'makersbnb_test')
-
-      property_1 = Property.create(name: 'Big Ben', description: 'London landmark', price: 150)
-      property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100)
+      user = User.create(email: 'JohnSmith@hotmail.com', password: 'password987')
+      property_1 = Property.create(name: 'Big Ben', description: 'London landmark', price: 150, user_id: user.id)
+      user2 = User.create(email: 'SamSmith@hotmail.com', password: 'password987')
+      property_2 = Property.create(name: 'Divine Lounge', description: '2 bed flat near beach', price: 100, user_id: user2.id)
 
       # need the id there
       property = Property.find(property_1.id)
